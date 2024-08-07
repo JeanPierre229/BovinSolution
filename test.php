@@ -5,8 +5,6 @@
             header('Location: services.php');
         }
     }
-    
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,56 +18,74 @@
     <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&famil
-    y=Reem+Kufi+Fun:wght@400..700&display=swap" 
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Reem+Kufi+Fun:wght@400..700&display=swap" 
     rel="stylesheet">
 </head>
 <style>
-    *{
-    font-size: 15px;
-    font-family: "Outfit", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
+    * {
+        font-size: 15px;
+        font-family: "Outfit", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
     }
-    body{
+
+    body {
         font-size: 18px;
     }
-    .bg{
-        background-image: url("images/img-peulh/Rectangle.png");
+
+    .bg {
+        background-image: url("images/img-peulh/berger.jpeg");
         background-size: 100%;
         background-repeat: no-repeat;
-        z-index: -1;
+        position: relative;
     }
-    .indexSearch{
+
+    .indexSearch {
         z-index: 99999999999999;
     }
-    .sh{
+
+    .sh {
         background-color: rgb(238, 238, 238);
         border-radius: 50px;
         padding: 15px;
     }
-    #search1{
+
+    #search1 {
         border: 0;
-        margin-top: -40px;
+        margin-top: 120px;
         padding: 20px;
         background-color: rgb(238, 238, 238);
         border-radius: 100px;
     }
-    #search{
+
+    #search {
         border: 0;
         background-color: transparent;
     }
-    #img-footer{
+
+    #img-footer {
         border-radius: 10px;
     }
-    .h-line{
+
+    .h-line {
         display: flex;
         justify-content: space-around;
     }
-    .overlay{
+
+    .overlay {
         background: rgba(0, 0, 0, 0.2);
         width: 100%;
+        position: relative;
+        z-index: 1;
+    }
+
+    .search-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 2;
     }
 </style>
 <body class="container">
@@ -77,18 +93,7 @@
         <?php require_once(__DIR__.'/header.php') ?>
     </header>
     <main>
-        <div class="row mt-3 bg" style="height: 350px;">
-            <div class="indexBg">
-                <div class="col-lg-12 col-8 col-md-4 p-lg-5 p-md-5 p-5 mb-5 mb-lg-5 mb-md-5">
-                    <strong><h1 class="mb-lg-2 mb-md-2" style="color: rgb(54, 160, 50);">BovinSolution</h1></strong>
-                    <p class="col-4 mb-lg-5 mb-0 mb-md-5" style="font-size: 18px; font-weight: 100px; color: white;">
-                        Nous vous facilitons l'accès aux ressources et
-                        informations concernant l'élevage au Bénin
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-12 col-lg-10 mx-auto text-center mb-5">
+        <div class="search-container col-12 col-md-12 col-lg-10 mx-auto text-center mb-5">
             <form action="index.php" method="post">
                 <div class="row justify-content-between space-search indexSearch" id="search1">
                     <div class="col-10 col-lg-8 col-md-6 text-center">
@@ -99,6 +104,17 @@
                     </div>
                 </div>
             </form>
+        </div>
+        <div class="row mt-3 bg">
+            <div class="overlay indexBg">
+                <div class="col-lg-4 col-8 col-md-4 p-lg-5 p-md-5 p-5 mb-5 mb-lg-5 mb-md-5">
+                    <strong><h3 class="mb-lg-2 mb-md-2" style="color: rgb(54, 160, 50);">BovinSolution</h3></strong>
+                    <p class="h4 col-12 text-light mb-lg-5 mb-0 mb-md-5">
+                        Nous vous facilitons l'accès aux ressources et <br>
+                        informations concernant l'élevage au Bénin
+                    </p>
+                </div>
+            </div>
         </div>
         <div class="row h-line" style="color: rgb(54, 160, 50);">
             <h6 class="col-10 h3">Catégories-Achat</h6>
@@ -126,11 +142,11 @@
                 }
             ?>
         </div>
-        <div class="row bg-secondary mx-2 my-4 text-center">
+        <div class="row bg-secondary m-2 text-center">
             <h4 class="text-light p-2" id="location">Annuaire géolocalisé des marchés du bétails</h4>
         </div>
         <div class="row mx-auto">
-            <div class="col-lg-6 col-md-12 col-12 text-center mb-3">
+            <div class="col-lg-6 col-md-12 col-12 text-center">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125977.52701863702!2d2.527193495
                     4203368!3d9.351160549754804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10320550a556d695
                     %3A0x706d4b90bc86232d!2sParakou!5e0!3m2!1sfr!2sbj!4v1708417046394!5m2!1sfr!2sbj" width="80%" 
@@ -158,59 +174,4 @@
                     </span>
                 </div>
                 <div class="mx-2">
-                    <button class="btn btn-secondary py-0 px-3">En savoir plus sur le marché du bétail</button>
-                </div>
-            </div>
-        </div>
-        <div class="row px-2" style="background-color: rgb(54, 160, 50);">
-            <div class="mx-auto my-3 text-center">
-                <strong class="text-light"><h2>Annonce</h2></strong>
-            </div>
-            <div class="row p-3">
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="container bg-light p-0" id="img-footer" style="height: 350px;">
-                        <p class="m-0">
-                            <img src="images/img-peulh/ddd.jpeg" alt="L'élevage de boeufs" class="img-fluid col-12 rounded-top-3">
-                        </p>
-                        <h5 class="px-4 pt-2">Formation en élevage de boeufs</h5>
-                        <p class="px-4 pb-2">
-                            In this article we will provide advice on cattle
-                            grazing for healthy cattle 
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="container bg-light p-0" id="img-footer" style="height: 350px;">
-                        <p class="m-0">
-                            <img src="images/img-peulh/fbri.jpeg" alt="L'élevage de boeufs" class="img-fluid col-12 rounded-top-3">
-                        </p>
-                        <h5 class="px-4 pt-2">Formation en fabrication de fromage</h5>
-                        <p class="px-4 pb-2">
-                            In this article we will provide advice on cattle
-                            grazing for healthy cattle 
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="container bg-light p-0" id="img-footer" style="height: 350px;">
-                        <p class="m-0">
-                            <img src="images/img-peulh/mttb.jpeg" alt="L'élevage de boeufs" class="img-fluid col-12 rounded-top-3">
-                        </p>
-                        <h5 class="px-4 pt-2">Formation en élevage de mouton</h5>
-                        <p class="px-4 pb-2">
-                            In this article we will provide advice on cattle
-                            grazing for healthy cattle 
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-    <footer>
-        <?php require "footer.php"; ?>
-    </footer>
-</body>
-</html>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-</script>
+                    <button class="btn btn-secondary py-0 px-3">En savoir plus sur
