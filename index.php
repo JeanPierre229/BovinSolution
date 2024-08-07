@@ -119,7 +119,7 @@
                                     </p>
                                     <h4 class="text-center">' .$row['nom_produit']. '</h4>
                                     <p class="text-center">
-                                        <button name="but" class="btn px-3 py-0 " style="background-color: rgb(54, 160, 50);">Ajouter au panier</button>
+                                        <button name="but" class="btn px-3 py-0 text-white" style="background-color: rgb(54, 160, 50);">Ajouter au panier</button>
                                     </p>
                                 </form>
                             </div>';
