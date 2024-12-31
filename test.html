@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icône en forme de L</title>
+    <style>
+        .icon-l {
+            position: relative;
+            width: 100px; /* Largeur de la partie horizontale */
+            height: 100px; /* Hauteur totale */
+        }
+        .icon-l::before {
+            content: '';
+            position: absolute;
+            width: 20px; /* Épaisseur de la partie verticale */
+            height: 100%; /* Hauteur égale à la div parent */
+            background-color: rgb(12, 245, 66);
+        }
+        .icon-l::after {
+            content: '';
+            position: absolute;
+            width: 100%; /* Largeur égale à la div parent */
+            height: 20px; /* Épaisseur de la partie horizontale */
+            background-color: rgb(12, 245, 66);
+            bottom: 0;
+        }
+        .icon-l-inverse {
+            position: relative;
+            width: 100px; /* Largeur de la partie horizontale */
+            height: 100px; /* Hauteur totale */
+        }
+        .icon-l-inverse::before {
+            content: '';
+            position: absolute;
+            width: 20px; /* Épaisseur de la partie verticale */
+            height: 100%; /* Hauteur totale */
+            background-color: rgb(218, 6, 6);
+            right: 0; /* Aligné à droite */
+        }
+        .icon-l-inverse::after {
+            content: '';
+            position: absolute;
+            width: 100%; /* Largeur totale */
+            height: 20px; /* Épaisseur de la partie horizontale */
+            background-color: rgb(218, 6, 6);
+            top: 0; /* Aligné en haut */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="icon-l"></div>
+    <p></p>
+    <div class="icon-l-inverse"></div>
+
+</body>
+</html>
