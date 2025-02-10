@@ -260,10 +260,25 @@
     <section id="hidepopupmb" style="margin-right: 200px; margin-left: 200px;">
         <div class="pop-up-overlay">
             <div class="pop-up-content">
-            <div class="card">
+            <div class="card" id='form-demand'>
                 <div class="card-header">
                 <h5 class="card-title mb-0 text-center mb-3">Formulaire de demande de service</h5>
-                <form action="#" method="post" class="text-left">
+                <form action="traitement_demande.php" method="post" class="text-left">
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <?php if (!empty($_SESSION['success'])): ?>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <span>
+                                        <?php echo $_SESSION['success']; unset($_SESSION['success']);?>
+                                    </span>
+                                    <span class="mt-3 ms-5">
+                                        <i class="material-icons" style="cursor: pointer" data-dismiss="alert" aria-label="Close">close</i>
+                                    </span>
+                                </div>
+                            <?php endif;?>
+                        </div>
+                    </div>
+                    </div>
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="region" class="form-label">Votre région:</label>
