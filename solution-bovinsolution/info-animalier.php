@@ -264,21 +264,20 @@
                 <div class="card-header">
                 <h5 class="card-title mb-0 text-center mb-3">Formulaire de demande de service</h5>
                 <form action="traitement_demande.php" method="post" class="text-left">
+                <?php if (!empty($_SESSION['success'])){ ?>
                     <div class="row mt-4">
-                        <div class="col-md-6">
-                            <?php if (!empty($_SESSION['success'])): ?>
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <span>
-                                        <?php echo $_SESSION['success']; unset($_SESSION['success']);?>
-                                    </span>
-                                    <span class="mt-3 ms-5">
-                                        <i class="material-icons" style="cursor: pointer" data-dismiss="alert" aria-label="Close">close</i>
-                                    </span>
+                        <div class="col-md-12">
+                            <div class="row py-3 alert alert-success alert-dismissible fade show" role="alert">
+                                <div class="col">
+                                    <?php echo $_SESSION['success']; unset($_SESSION['success']);?>
                                 </div>
-                            <?php endif;?>
+                                <div class="col text-right">
+                                    <i class="material-icons text-right" style="cursor: pointer" data-dismiss="alert" aria-label="Close">close</i>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    </div>
+                <?php }else{ ?>
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="region" class="form-label">Votre région:</label>
@@ -337,6 +336,7 @@
                             </div>
                         </div>
                     </div>
+                <?php } ?>
                 </form>
                 </div>
             </div>

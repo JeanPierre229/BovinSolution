@@ -69,7 +69,11 @@
                         <div class="dropdown mx-5 px-5">
                             <?php if(!empty($_SESSION['nom'])): ?>
                                 <span class="" style="margin-top: -800px;">
-                                    <?= $_SESSION['nom']. ' ' .$_SESSION['prenoms']; ?>
+                                    <?php if($_SESSION['categories'] === "Data Manager"){ ?>
+                                        <?= $_SESSION['nom']. ' ' .$_SESSION['prenoms']. 'M'; ?>
+                                     <?php }else{ ?>
+                                        <?= $_SESSION['nom']. ' ' .$_SESSION['prenoms']; ?>
+                                     <?php }?>
                                 </span>
                             <?php endif;?>
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><i class="material-icons text-success">person_outlined</i></a>

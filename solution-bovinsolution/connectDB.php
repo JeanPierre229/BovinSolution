@@ -1,7 +1,7 @@
 <?php
     class DataBase{
         private static $mysqlhost = "localhost";
-        private static $dbname = "bovin_solution";
+        private static $dbname = "bovinsolution";
         private static $userAdmin = "root";
         private static $mp = "";
 

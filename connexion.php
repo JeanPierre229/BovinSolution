@@ -81,6 +81,7 @@
                     <div class="mt-3">
                         <span>Vous n'avez pas de compte ?</span>
                         <span class="mx-3"><a href="inscription.php">S'inscrire</a></span>
+                        <span class="mx-3"><a href="entree.php">Entree</a></span>
                     </div>
                 </form>
             </div>

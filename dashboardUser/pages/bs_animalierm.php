@@ -1,6 +1,6 @@
 <?php 
   session_start();
-  $element_active = 'dashboard'; 
+  $element_active = 'Animalier'; 
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -28,9 +28,6 @@
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-  <!-- Material Icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <style>
   .text-orange{
@@ -42,6 +39,10 @@
   .navbar-vertical .navbar-nav>.nav-item .nav-link.active .icon {
     background-image: linear-gradient(310deg, #ffc107 0%, #28a745 100%);
   }
+  .bg-success-new{
+    background-color: #28a745;
+    font-weight: bold;
+  }
   .bg-gradient-primary{
     background-image: linear-gradient(310deg, #ffc107 0%, #28a745 100%);
   }
@@ -51,100 +52,202 @@
 </style>
 
 <body class="g-sidenav-show  bg-gray-100">
-  <?php include "aside.php"; ?>
+  <?php require "aside.php" ?>
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navbar -->
     <?php require "navbar.php"; ?>
     <!-- End Navbar -->
-    <div class="container-fluid py-4">
-      <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Animaliers Peulhs</p>
-                    <h5 class="font-weight-bolder mb-0">
-                      53
-                      <span class="text-success text-sm font-weight-bolder">+55%</span>
-                    </h5>
+      <div class="container-fluid py-4">
+        <div class="row my-4">
+          <div class="col-lg-12 col-md-9 mb-md-0 mb-4">
+            <div class="card">
+              <div class="card-header pb-0">
+                <div class="row">
+                  <div class="col-lg-12 col-12">
+                    <h6 class="text-center">Informations des animaliers peulhs à ajouter</h6>
+                    <p class="text-sm mb-0">
+                      <i class="fa fa-check text-info" aria-hidden="true"></i>
+                    </p>
                   </div>
                 </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                    <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+              </div>
+              <div class="card-body px-3 pb-2">
+                <form action="#" method="post">
+                  <div class="row">
+                      <div class="col-lg-4">
+                          <div class="form-group">
+                              <label for="nom">Nom: </label>
+                              <input type="text" class="form-control" id="nom" name="nom" required>
+                          </div>
+                      </div>
+                      <div class="col-lg-4">
+                          <div class="form-group">
+                              <label for="taille">Taille: </label>
+                              <input type="number" class="form-control" id="taille" name="taille" required>
+                          </div>
+                      </div>
+                      <div class="col-lg-4">
+                          <div class="form-group">
+                              <label for="mise_bas">Mise en bas: </label>
+                              <input type="number" class="form-control" id="mise_bas" name="mise_bas" required>
+                          </div>
+                      </div>
                   </div>
-                </div>
+                  <div class="row">
+                      <div class="col-lg-6">
+                          <div class="form-group">
+                              <label for="prophilaxie">Prophilaxie: </label>
+                              <input type="number" class="form-control" id="prophilaxie" name="prophilaxie" required>
+                          </div>
+                      </div>
+                      <div class="col-lg-6">
+                          <div class="form-group">
+                              <label for="fautes">Fautes: </label>
+                              <input type="number" class="form-control" id="fautes" name="fautes" required>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <div class="form-group">
+                              <label for="sanction">Sanctions reçues: </label>
+                              <input type="number" class="form-control" id="sanction" name="sanction" required>
+                          </div>
+                      </div>
+                      <!-- <div class="col-lg-6">
+                          <div class="form-group">
+                              <label for="region">Région: </label>
+                              <select class="form-control" id="region" name="region" required>
+                                <option value="Atacora">Atacora (coming soon)</option>
+                                <option value="Alibori">Alibori (coming soon)</option>
+                                <option value="Borgou">Borgou</option>
+                                <option value="Donga">Donga (coming soon)</option>
+                                <option value="Couffo">Couffo (coming soon)</option>
+                                <option value="Collines">Collines (coming soon)</option>
+                                <option value="Zou">Zou (coming soon)</option>
+                                <option value="Plateau">Plateau (coming soon)</option>
+                                <option value="Littoral">Littoral (coming soon)</option>
+                                <option value="Oueme">Oueme (coming soon)</option>
+                                <option value="Mono">Mono (coming soon)</option>
+                                <option value="Atlantique">Atlantique (coming soon)</option>
+                            </select>
+                          </div>
+                      </div> -->
+                  </div>
+                  <div class="row">
+                      <div class="col-lg-4">
+                          <div class="form-group">
+                              <label for="salaires">Salaires: </label>
+                              <input type="text" class="form-control" id="salaires" name="salaires" required>
+                          </div>
+                      </div>
+                      <div class="col-lg-4">
+                          <div class="form-group">
+                              <label for="avance">Avance: </label>
+                              <input type="number" class="form-control" id="avance" name="avance" required>
+                          </div>
+                      </div>
+                      <div class="col-lg-4">
+                          <div class="form-group">
+                              <label for="dettes">Dettes: </label>
+                              <input type="number" class="form-control" id="dettes" name="dettes" required>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-lg-12 mt-3">
+                          <div class="form-group">
+                              <input type="submit" class="form-control py-2 alert alert-success text-light" value="VALIDER" required>
+                          </div>
+                      </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Nombre de mise bas</p>
-                    <h5 class="font-weight-bolder mb-0">
-                      23
-                      <span class="text-success text-sm font-weight-bolder">+3%</span>
-                    </h5>
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+        <div class="row my-4">
+          <div class="col-lg-12 col-md-9 mb-md-0 mb-4">
+            <div class="card">
+              <div class="card-header pb-0">
+                <div class="row">
+                  <div class="col-lg-12 col-12">
+                    <h6 class="text-center" id="addA">Les Animaliers Peulhs à ajouter</h6>
+                    <p class="text-sm mb-0">
+                      <i class="fa fa-check text-info" aria-hidden="true"></i>
+                    </p>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Animaux Enregistrés</p>
-                    <h5 class="font-weight-bolder mb-0">
-                      3.462
-                      <span class="text-danger text-sm font-weight-bolder">-2%</span>
-                    </h5>
-                  </div>
+              <?php if(!empty($_SESSION['successadd'])){ ?>
+                <div class="alert alert-success text-center m-5" role="alert">
+                  <strong>Ajout réussi!</strong> L'animalier a bien été ajouté.
                 </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                    <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
-                </div>
+              <?php unset($_SESSION['successadd']); } else { ?>
+              <div class="card-body px-3 pb-2">
+                <form action="traitement_addanimalier.php" method="post">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="nom">Nom: </label>
+                                <input type="text" class="form-control" id="nom" name="nom" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="region">Région: </label>
+                                <select class="form-control" id="region" name="region" required>
+                                  <option value="Atacora">Atacora (coming soon)</option>
+                                  <option value="Alibori">Alibori (coming soon)</option>
+                                  <option value="Borgou">Borgou</option>
+                                  <option value="Donga">Donga (coming soon)</option>
+                                  <option value="Couffo">Couffo (coming soon)</option>
+                                  <option value="Collines">Collines (coming soon)</option>
+                                  <option value="Zou">Zou (coming soon)</option>
+                                  <option value="Plateau">Plateau (coming soon)</option>
+                                  <option value="Littoral">Littoral (coming soon)</option>
+                                  <option value="Oueme">Oueme (coming soon)</option>
+                                  <option value="Mono">Mono (coming soon)</option>
+                                  <option value="Atlantique">Atlantique (coming soon)</option>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="experience">Expérience (en année): </label>
+                                <input type="number" min="0" max="50" class="form-control" id="experience" name="experience" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="domicile">A Domicile: </label>
+                                <select class="form-control" id="domicile" name="domicile" required>
+                                  <option value="Oui">Oui, je travaille à domicile</option>
+                                  <option value="O&N">ça peut arriver</option>
+                                  <option value="Non">Non, pas du tout</option>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="identite">CIN/CIP/NIP: </label>
+                                <input type="number" min="1" class="form-control" id="identite" name="identite" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-12 mt-3">
+                          <div class="form-group">
+                              <input type="submit" class="form-control py-2 alert alert-success text-light" value="AJOUTER" required>
+                          </div>
+                      </div>
+                    </div>
+                </form>
               </div>
+              <?php } ?>
             </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-sm-6">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Bétails Vendus</p>
-                    <h5 class="font-weight-bolder mb-0">
-                      435.000 XOF
-                      <span class="text-success text-sm font-weight-bolder">+5%</span>
-                    </h5>
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
       <div class="row mt-4">
@@ -289,306 +392,29 @@
                 <div class="col-lg-6 col-7">
                   <h6>Nos Animaliers Peulhs</h6>
                   <p class="text-sm mb-0">
-                    <i class="fa fa-check text-info" aria-hidden="true"></i>
-                    <span class="font-weight-bold ms-1">06 groupes peulhs de</span> Borgou
+                      <i class="fa fa-check text-info" aria-hidden="true"></i>
+                      <span class="font-weight-bold ms-1">06 groupes peulhs de</span> Borgou
+                      <span><i><a href="../../solution-bovinsolution/info-animalier.php">Demander un Animalier</a></i></span>
+                      <span><i><a href="bs_demande_animalier.php" class='text-dark'>Mes demandes d'Animaliers</a></i></span>
                   </p>
                 </div>
                 <div class="col-lg-6 col-5 my-auto text-end">
-                  <div class="dropdown float-lg-end pe-4">
-                    <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fa fa-ellipsis-v text-secondary"></i>
-                    </a>
-                    <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
-                      <li><a class="dropdown-item border-radius-md" href="javascript:;">Actions</a></li>
-                      <li><a class="dropdown-item border-radius-md" href="javascript:;">Autres actions</a></li>
-                      <li><a class="dropdown-item border-radius-md" href="javascript:;">Autre chose ici</a></li>
-                    </ul>
+                  <div class="float-lg-end pe-4">
+                      <a class="cursor-pointer">
+                        <span onclick="actualiserTable()">Actualiser</span>
+                      </a>
                   </div>
                 </div>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
-              <div class="table-responsive">
-                <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Animaliers Peulhs</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Collaborateurs</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Budget</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Progression</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <img src="../../img/img-peulh/Man_Silhouette.png" class="avatar avatar-sm me-3" alt="xd">
-                          </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Manouton Koffi</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="avatar-group mt-2">
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                            <img src="../assets/img/team-1.jpg" alt="team1">
-                          </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                            <img src="../assets/img/team-2.jpg" alt="team2">
-                          </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
-                            <img src="../assets/img/team-3.jpg" alt="team3">
-                          </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                            <img src="../assets/img/team-4.jpg" alt="team4">
-                          </a>
-                        </div>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> 1,400,000 XOF</span>
-                      </td>
-                      <td class="align-middle">
-                        <div class="progress-wrapper w-25 mx-auto">
-                          <div class="progress-info">
-                            <div class="progress-percentage">
-                              <span class="text-xs font-weight-bold">60%</span>
-                            </div>
-                          </div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-info w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <img src="../../img/img-peulh/Man_Silhouette.png" class="avatar avatar-sm me-3" alt="atlassian">
-                          </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">AGOSSOU Christian</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="avatar-group mt-2">
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                            <img src="../assets/img/team-2.jpg" alt="team5">
-                          </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                            <img src="../assets/img/team-4.jpg" alt="team6">
-                          </a>
-                        </div>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> 300,000 XOF</span>
-                      </td>
-                      <td class="align-middle">
-                        <div class="progress-wrapper w-25 mx-auto">
-                          <div class="progress-info">
-                            <div class="progress-percentage">
-                              <span class="text-xs font-weight-bold">10%</span>
-                            </div>
-                          </div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-info w-10" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <img src="../../img/img-peulh/Man_Silhouette.png" class="avatar avatar-sm me-3" alt="team7">
-                          </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Bloukoutou Jean</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="avatar-group mt-2">
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                            <img src="../assets/img/team-3.jpg" alt="team8">
-                          </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                            <img src="../assets/img/team-1.jpg" alt="team9">
-                          </a>
-                        </div>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> --- </span>
-                      </td>
-                      <td class="align-middle">
-                        <div class="progress-wrapper w-25 mx-auto">
-                          <div class="progress-info">
-                            <div class="progress-percentage">
-                              <span class="text-xs font-weight-bold">100%</span>
-                            </div>
-                          </div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-success w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <img src="../../img/img-peulh/Man_Silhouette.png" class="avatar avatar-sm me-3" alt="spotify">
-                          </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Adje Robert</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="avatar-group mt-2">
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                            <img src="../assets/img/team-4.jpg" alt="user1">
-                          </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                            <img src="../assets/img/team-3.jpg" alt="user2">
-                          </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
-                            <img src="../assets/img/team-4.jpg" alt="user3">
-                          </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                            <img src="../assets/img/team-1.jpg" alt="user4">
-                          </a>
-                        </div>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> 2,500,000 XOF</span>
-                      </td>
-                      <td class="align-middle">
-                        <div class="progress-wrapper w-25 mx-auto">
-                          <div class="progress-info">
-                            <div class="progress-percentage">
-                              <span class="text-xs font-weight-bold">100%</span>
-                            </div>
-                          </div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-success w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <img src="../../img/img-peulh/Man_Silhouette.png" class="avatar avatar-sm me-3" alt="jira">
-                          </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Nounagnon Béni de Dieu</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="avatar-group mt-2">
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                            <img src="../assets/img/team-4.jpg" alt="user5">
-                          </a>
-                        </div>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> 50,000 XOF </span>
-                      </td>
-                      <td class="align-middle">
-                        <div class="progress-wrapper w-25 mx-auto">
-                          <div class="progress-info">
-                            <div class="progress-percentage">
-                              <span class="text-xs font-weight-bold">25%</span>
-                            </div>
-                          </div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-info w-25" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="25"></div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <img src="../../img/img-peulh/Man_Silhouette.png" class="avatar avatar-sm me-3" alt="invision">
-                          </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Zougou Valentin</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="avatar-group mt-2">
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                            <img src="../assets/img/team-1.jpg" alt="user6">
-                          </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                            <img src="../assets/img/team-4.jpg" alt="user7">
-                          </a>
-                        </div>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> 200,000 XOF</span>
-                      </td>
-                      <td class="align-middle">
-                        <div class="progress-wrapper w-25 mx-auto">
-                          <div class="progress-info">
-                            <div class="progress-percentage">
-                              <span class="text-xs font-weight-bold">40%</span>
-                            </div>
-                          </div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-info w-40" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="40"></div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div class="table-responsive" id="table-resp">
+                <!-- LA TABLE SE CHARGE ICI -->
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- <footer class="footer pt-3  ">
-        <div class="container-fluid">
-          <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-6 mb-lg-0 mb-4">
-              <div class="copyright text-center text-sm text-muted text-lg-start">
-                © <script>
-                  document.write(new Date().getFullYear())
-                </script>,
-                made with <i class="fa fa-heart"></i> by
-                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-                for a better web.
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer> -->
     </div>
   </main>
   <div class="fixed-plugin">
@@ -748,7 +574,7 @@
     new Chart(ctx2, {
       type: "line",
       data: {
-        labels: ["Avr", "Mai", "Juin", "Juil", "Aoû", "Sept", "Oct", "Nov", "Dec"],
+        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         datasets: [{
             label: "Mobile apps",
             tension: 0.4,
@@ -842,10 +668,22 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
+  <script>
+    // Code pour rafraîchir une partie d'une page web grâce à un bouton
+    function actualiserTable() {
+      fetch('actualiser_donnee.php') // Remplace par ton API ou fichier de données
+          .then(response => response.text())
+          .then(data => {
+              document.getElementById('table-resp').innerHTML = data;
+          })
+          .catch(error => console.error('Erreur:', error));
+    }
+
+    setInterval(actualiserTable, 500);
+  </script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
 </body>
-
 </html>

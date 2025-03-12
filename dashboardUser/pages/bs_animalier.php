@@ -20,7 +20,7 @@
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -54,17 +54,18 @@
     <?php require "navbar.php"; ?>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
-    <div class="row my-4">
+      <div class="row my-4">
           <div class="col-lg-12 col-md-9 mb-md-0 mb-4">
             <div class="card">
               <div class="card-header pb-0">
                 <div class="row">
                   <div class="col-lg-6 col-7">
-                    <h6>Nos Animaliers Peulhs</h6>
+                    <h6>Performances de nos animliers peulhs</h6>
                     <p class="text-sm mb-0">
                       <i class="fa fa-check text-info" aria-hidden="true"></i>
                       <span class="font-weight-bold ms-1">06 groupes peulhs de</span> Borgou
                       <span><i><a href="../../solution-bovinsolution/info-animalier.php">Demander un Animalier</a></i></span>
+                      <span><i><a href="bs_demande_animalier.php" class='text-dark'>Mes demandes d'Animaliers</a></i></span>
                     </p>
                   </div>
                   <div class="col-lg-6 col-5 my-auto text-end">
@@ -550,6 +551,479 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="row my-4">
+          <div class="col-lg-12 col-md-9 mb-md-0 mb-4">
+            <div class="card">
+              <div class="card-header pb-0">
+                <div class="row">
+                  <div class="col-lg-6 col-7">
+                    <h6>Mes animaliers demandé</h6>
+                    <p class="text-sm mb-0">
+                      <i class="fa fa-check text-info" aria-hidden="true"></i>
+                      <span><i><a href="#">Tous les animaliers que j'ai demandé</a></i></span>
+                    </p>
+                  </div>
+                  <div class="col-lg-6 col-5 my-auto text-end">
+                    <div class="dropdown float-lg-end pe-4">
+                      <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-ellipsis-v text-secondary"></i>
+                      </a>
+                      <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
+                        <li><a class="dropdown-item border-radius-md" href="javascript:;">Voir tout</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body px-0 pb-2">
+                <div class="table-responsive">
+                  <table class="table align-items-center mb-0">
+                    <thead>
+                      <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">N°</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Région</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Type de bétails</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type d'âge</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Budget</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Assistance</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Recommandation</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                        $nom = $_SESSION['nom'];
+                        require "../../connectDB.php";
+                        $connect = DataBase::connect();
+                        $tablename= 'mesdemandesa_' . $nom;
+                        $requete = $connect->prepare("SELECT * FROM `$tablename`;");
+                        $requete->execute();
+
+                        while($line = $requete->fetch()){
+                      ?>
+                        <tr>
+                          <td>
+                            <div class="d-flex px-2 py-1">
+                              <span>#<?= $line['id'] ?></span>
+                            </div>
+                          </td>
+                          <td>
+                              <div class="avatar-group mt-2">
+                                  <h6 class="text-xxs"> <?= $line['region'] ?></h6>
+                              </div>
+                          </td>
+                          <td class="align-middle text-sm">
+                            <span class="text-xs font-weight-bold"> <?= $line['type_betails'] ?></span>
+                          </td>
+                          <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                              <div class="progress-info">
+                                <div class="progress-percentage">
+                                  <span class="text-xs font-weight-bold"> <?= $line['type_age'] ?></span>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="align-middle">
+                              <div class="progress-wrapper w-25 mx-auto">
+                                  <div class="progress-info">
+                                      <div class="progress-percentage">
+                                          <span class="text-xs font-weight-bold"> <?= $line['budget'] ?></span>
+                                      </div>
+                                  </div>
+                              </div>
+                          </td>
+                          <td class="align-middle">
+                              <div class="progress-wrapper w-25 mx-auto">
+                                  <div class="progress-info">
+                                      <div class="progress-percentage">
+                                          <span class="text-xs font-weight-bold"> <?= $line['assistance'] ?></span>
+                                      </div>
+                                  </div>
+                              </div>
+                          </td>
+                          <td class="align-middle">
+                              <div class="progress-wrapper w-25 mx-auto">
+                                  <div class="progress-info">
+                                      <div class="progress-percentage">
+                                          <span class="text-xs font-weight-bold"> <?= $line['recommandation'] ?></span>
+                                      </div>
+                                  </div>
+                              </div>
+                          </td>
+                        </tr>
+                      <?php } ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="row my-4">
+          <div class="col-lg-12 col-md-9 mb-md-0 mb-4">
+            <div class="card">
+              <div class="card-header pb-0">
+                <div class="row">
+                  <div class="col-lg-6 col-7">
+                    <h6>Tous les animaliers</h6>
+                    <p class="text-sm mb-0">
+                      <i class="fa fa-check text-info" aria-hidden="true"></i>
+                      <span class="font-weight-bold ms-1">06 groupes peulhs de</span> Borgou
+                      <span><i><a href="../../solution-bovinsolution/info-animalier.php">Demander un Animalier</a></i></span>
+                      <span><i><a href="bs_demande_animalier.php" class='text-dark'>Mes demandes d'Animaliers</a></i></span>
+                    </p>
+                  </div>
+                  <div class="col-lg-6 col-5 my-auto text-end">
+                    <div class="dropdown float-lg-end pe-4">
+                      <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-ellipsis-v text-secondary"></i>
+                      </a>
+                      <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
+                        <li><a class="dropdown-item border-radius-md" href="javascript:;">Voir tout</a></li>
+                        <!-- <li><a class="dropdown-item border-radius-md" href="javascript:;">Autre actions</a></li>
+                        <li><a class="dropdown-item border-radius-md" href="javascript:;">Autre chose ici</a></li> -->
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body px-0 pb-2">
+                <div class="table-responsive">
+                  <table class="table align-items-center mb-0">
+                    <thead>
+                      <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">N°</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Noms</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Taille du cheptel</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mise Bas</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Prophylaxie</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fautes réalisées</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SAnctions reçues</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Salaires payées</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Avance reçues</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dettes</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2 py-1">
+                            <span>#1</span>
+                          </div>
+                        </td>
+                        <td>
+                            <div class="avatar-group mt-2">
+                                <h6 class="text-xxs">MANOUTON</h6>
+                            </div>
+                        </td>
+                        <td class="align-middle text-sm">
+                          <span class="text-xs font-weight-bold"> 34000</span>
+                        </td>
+                        <td class="align-middle">
+                          <div class="progress-wrapper w-25 mx-auto">
+                            <div class="progress-info">
+                              <div class="progress-percentage">
+                                <span class="text-xs font-weight-bold">60</span>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2 py-1">
+                            <span>#2</span>
+                          </div>
+                        </td>
+                        <td>
+                            <div class="avatar-group mt-2">
+                                <h6 class="text-xxs">MANOUTON</h6>
+                            </div>
+                        </td>
+                        <td class="align-middle text-sm">
+                          <span class="text-xs font-weight-bold"> 500</span>
+                        </td>
+                        <td class="align-middle">
+                          <div class="progress-wrapper w-25 mx-auto">
+                            <div class="progress-info">
+                              <div class="progress-percentage">
+                                <span class="text-xs font-weight-bold">60</span>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2 py-1">
+                            <span>#3</span>
+                          </div>
+                        </td>
+                        <td>
+                            <div class="avatar-group mt-2">
+                                <h6 class="text-xxs">MANOUTON</h6>
+                            </div>
+                        </td>
+                        <td class="align-middle text-sm">
+                          <span class="text-xs font-weight-bold"> 8000</span>
+                        </td>
+                        <td class="align-middle">
+                          <div class="progress-wrapper w-25 mx-auto">
+                            <div class="progress-info">
+                              <div class="progress-percentage">
+                                <span class="text-xs font-weight-bold">60</span>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2 py-1">
+                            <span>#4</span>
+                          </div>
+                        </td>
+                        <td>
+                            <div class="avatar-group mt-2">
+                                <h6 class="text-xxs">MANOUTON</h6>
+                            </div>
+                        </td>
+                        <td class="align-middle text-sm">
+                          <span class="text-xs font-weight-bold"> 3000</span>
+                        </td>
+                        <td class="align-middle">
+                          <div class="progress-wrapper w-25 mx-auto">
+                            <div class="progress-info">
+                              <div class="progress-percentage">
+                                <span class="text-xs font-weight-bold">60</span>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="progress-wrapper w-25 mx-auto">
+                                <div class="progress-info">
+                                    <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">80</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
         </div>
       </div>
     </div>

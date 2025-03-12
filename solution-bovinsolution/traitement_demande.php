@@ -18,9 +18,11 @@
         require "connectDB.php";
         $connect = DataBase::connect();
         
+        $nom = $_SESSION['nom'];
         // Préparation de la requête pour éviter les injections SQL
+        // Utilisation de la table mesDemandesA ici
         $requete = $connect->prepare("
-            INSERT INTO demande_animalier(region, type_betails, type_age, budget, assistance, recommandation)
+            INSERT INTO mesDemandesA_$nom(region, type_betails, type_age, budget, assistance, recommandation)
             VALUES(:region, :type_betails, :type_age, :budget, :assistance, :recommendation)
         ");
         
@@ -37,44 +39,8 @@
         header("Location: info-animalier.php#form-demand");
 
         $_SESSION['success'] = "Demande enregistrée avec succès";
-
-        // Vérification du mail
-        // if(filter_var($mail, FILTER_VALIDATE_EMAIL)){
-        //     // Vérification du mot de passe
-        //     if($motDePasse1 == $motDePasse2){
-        //         $motDePasse = $motDePasse1; // Assignation du mot de passe
-        //         require "connectDB.php";
-        //         $connect = DataBase::connect();
-                
-        //         // Préparation de la requête pour éviter les injections SQL
-        //         $requete = $connect->prepare("
-        //             INSERT INTO demande_animalier(region, type_betails, type_age, budget, assistance, recommandation)
-        //             VALUES(:region, :type_betails, :type_age, :budget, :assistance, :recommendation)
-        //         ");
-                
-        //         // Exécution de la requête avec des paramètres sécurisés
-        //         $requete->execute([
-        //             ':region' => $region,
-        //             ':type_betails' => $type_betails,
-        //             ':type_age' => $type_age,
-        //             ':budget' => $budget,
-        //             ':assistance' => $assistance,
-        //             ':recommendation' => $recommandation
-        //         ]);
-
-        //         header("Location: ../dashboardUser/pages/dashboard.php");
-        //     }else{
-        //         $_SESSION['error_mp'] = "Erreur, mot de passe non identique";
-        //         header("Location: inscription.php");
-        //         $_SESSION['region'] = $region;
-        //         $_SESSION['type_betails'] = $type_betails;
-        //         $_SESSION['type_age'] = $type_age;
-        //         $_SESSION['budget'] = $budget;
-        //     }
-        // }else{
-        //     $_SESSION['error_mail'] = "Erreur, format de mail incorrect";
-        //     header("Location: info-animalier.php");
-        // }
+    }else{
+        header("Location: ../about.php");
     }
 
     function checkData($data){

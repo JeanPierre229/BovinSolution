@@ -36,6 +36,28 @@
                     ':motDePasse' => $motDePasse
                 ]);
 
+                $requete1 = $connect->query("SHOW TABLES LIKE 'mesDemandesA_$nom';");
+
+                if($requete1->rowCount() > 0) {
+                    // DO NOTHING
+                } else {
+
+                    // Création de la table des demandes des animaliers
+                    $requete2 = $connect->query("CREATE TABLE mesDemandesA_:nom (
+                        id int PRIMARY KEY AUTO_INCREMENT,
+                        region VARCHAR(500),
+                        type_betails VARCHAR(500),
+                        type_age VARCHAR(500),
+                        budget int,
+                        assitance VARCHAR(500),
+                        recommandation VARCHAR(500)
+                    );");
+                    $requete2->execute([':nom' => $nom]);
+
+                    // Création des autres tables (en attente d'abord)
+
+                }
+
                 header("Location: connexion.php");
             }else{
                 $_SESSION['error_mp'] = "Erreur, mot de passe non identique";
