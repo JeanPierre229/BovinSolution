@@ -13,6 +13,12 @@
   <title>
     Dashboard BovinSolution -- WaxangariLabs
   </title>
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
@@ -28,6 +34,9 @@
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <!-- Materials icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <style>
   .text-orange{
@@ -60,7 +69,7 @@
       <div class="container-fluid py-4">
         <div class="row my-4">
           <div class="col-lg-12 col-md-9 mb-md-0 mb-4">
-            <div class="card">
+            <div class="card" id="addIA">
               <div class="card-header pb-0">
                 <div class="row">
                   <div class="col-lg-12 col-12">
@@ -71,8 +80,13 @@
                   </div>
                 </div>
               </div>
+              <?php if(!empty($_SESSION['successperf'])){ ?>
+                <div class="alert alert-success text-center m-5" role="alert">
+                  <strong>Ajout réussi!</strong> Les informations de l'animalier ont bien été ajoutées.
+                </div>
+              <?php unset($_SESSION['successperf']); } else { ?>
               <div class="card-body px-3 pb-2">
-                <form action="#" method="post">
+                <form action="traitement_performancea.php" method="post">
                   <div class="row">
                       <div class="col-lg-4">
                           <div class="form-group">
@@ -83,7 +97,7 @@
                       <div class="col-lg-4">
                           <div class="form-group">
                               <label for="taille">Taille: </label>
-                              <input type="number" class="form-control" id="taille" name="taille" required>
+                              <input type="number" min="0" class="form-control" id="taille" name="taille" required>
                           </div>
                       </div>
                       <div class="col-lg-4">
@@ -110,47 +124,28 @@
                   <div class="row">
                       <div class="col-lg-12">
                           <div class="form-group">
-                              <label for="sanction">Sanctions reçues: </label>
-                              <input type="number" class="form-control" id="sanction" name="sanction" required>
+                              <label for="sanctions">Sanctions reçues: </label>
+                              <input type="text" class="form-control" id="sanctions" name="sanctions" required>
                           </div>
                       </div>
-                      <!-- <div class="col-lg-6">
-                          <div class="form-group">
-                              <label for="region">Région: </label>
-                              <select class="form-control" id="region" name="region" required>
-                                <option value="Atacora">Atacora (coming soon)</option>
-                                <option value="Alibori">Alibori (coming soon)</option>
-                                <option value="Borgou">Borgou</option>
-                                <option value="Donga">Donga (coming soon)</option>
-                                <option value="Couffo">Couffo (coming soon)</option>
-                                <option value="Collines">Collines (coming soon)</option>
-                                <option value="Zou">Zou (coming soon)</option>
-                                <option value="Plateau">Plateau (coming soon)</option>
-                                <option value="Littoral">Littoral (coming soon)</option>
-                                <option value="Oueme">Oueme (coming soon)</option>
-                                <option value="Mono">Mono (coming soon)</option>
-                                <option value="Atlantique">Atlantique (coming soon)</option>
-                            </select>
-                          </div>
-                      </div> -->
                   </div>
                   <div class="row">
                       <div class="col-lg-4">
                           <div class="form-group">
                               <label for="salaires">Salaires: </label>
-                              <input type="text" class="form-control" id="salaires" name="salaires" required>
+                              <input type="number" min="5000" step="500" class="form-control" id="salaires" name="salaires" required>
                           </div>
                       </div>
                       <div class="col-lg-4">
                           <div class="form-group">
-                              <label for="avance">Avance: </label>
-                              <input type="number" class="form-control" id="avance" name="avance" required>
+                              <label for="avances">Avance: </label>
+                              <input type="number" min="0" step="500" class="form-control" id="avances" name="avances" required>
                           </div>
                       </div>
                       <div class="col-lg-4">
                           <div class="form-group">
                               <label for="dettes">Dettes: </label>
-                              <input type="number" class="form-control" id="dettes" name="dettes" required>
+                              <input type="number" min="0" step="500" class="form-control" id="dettes" name="dettes" required>
                           </div>
                       </div>
                   </div>
@@ -163,6 +158,7 @@
                   </div>
                 </form>
               </div>
+              <?php } ?>
             </div>
           </div>
         </div>
@@ -185,7 +181,7 @@
                 </div>
               <?php unset($_SESSION['successadd']); } else { ?>
               <div class="card-body px-3 pb-2">
-                <form action="traitement_addanimalier.php" method="post">
+                <form action="traitement_addanimalier.php" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="form-group">
@@ -233,7 +229,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="identite">CIN/CIP/NIP: </label>
-                                <input type="number" min="1" class="form-control" id="identite" name="identite" required>
+                                <input type="file" class="form-control" name="identite_file" id="identite_file" required>
                             </div>
                         </div>
                     </div>

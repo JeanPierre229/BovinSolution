@@ -828,7 +828,7 @@
                     </div>
                     <h5 class="font-weight-medium mb-2">Déléguer pour vous Concentrer sur l'Essentiel</h5>
                     <p class="mb-4">Grâce à cette approche intelligente et à l'expertise de spécialistes, vous n'aurez plus à vous disperser dans les tâches quotidiennes chronophages.</p>
-                    <a class="btn btn-sm btn-primary py-2" href="blog.php">En savoir plus</a>
+                    <a class="btn btn-sm btn-primary py-2" href="blog.php" id="plus">En savoir plus</a>
                 </div>
             </div>
         </div>

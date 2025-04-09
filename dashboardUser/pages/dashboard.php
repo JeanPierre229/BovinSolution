@@ -669,9 +669,9 @@
     new Chart(ctx, {
       type: "bar",
       data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: ["Avr", "Mai", "Juin", "Juil", "Aoû", "Sept", "Oct", "Nov", "Dec"],
         datasets: [{
-          label: "Sales",
+          label: "Ventes",
           tension: 0.4,
           borderWidth: 0,
           borderRadius: 4,
@@ -750,7 +750,7 @@
       data: {
         labels: ["Avr", "Mai", "Juin", "Juil", "Aoû", "Sept", "Oct", "Nov", "Dec"],
         datasets: [{
-            label: "Mobile apps",
+            label: "Naissance",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 0,
@@ -763,7 +763,7 @@
 
           },
           {
-            label: "Websites",
+            label: "Femelles",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 0,

@@ -6,7 +6,7 @@
         border: none;
     }
 </style>
-<div class="container-fluid bg-dark text-white mt-5 py-5 px-sm-3 px-md-5">
+<div class="container-fluid bg-dark text-white mt-5 py-5 px-sm-3 px-md-5" id="footer">
     <div class="row pt-5">
         <div class="col-lg-3 col-md-6 mb-5">
             <a href="index.php" class="navbar-brand">
@@ -42,12 +42,24 @@
             <h4 class="font-weight-semi-bold text-primary mb-4">Newsletter</h4>
             <p>Restez informé des dernières nouveautés et actualités en vous abonnant à notre newsletter.</p>
             <div class="w-100">
-                <div class="input-group">
-                    <input type="text" class="form-control border-0" style="padding: 25px;" placeholder="Votre Email">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary px-4">Souscrire</button>
-                    </div>
-                </div>
+                <form action="traitement_souscription.php" method="post">
+                    <?php if(empty($_SESSION['succes_format']) && empty($_SESSION['error_format'])){ ?>
+                        <div class="input-group">
+                            <input type="text" class="form-control border-0" name="mail_newsletter" id="mail_newsletter" style="padding: 25px;" placeholder="Votre Email">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary px-4">Souscrire</button>
+                            </div>
+                        </div>
+                    <?php } elseif (isset($_SESSION['succes_format'])) {?>
+                        <div class="alert alert-success" role="alert">
+                            <?php echo $_SESSION['succes_format']; unset($_SESSION['succes_format']);?>
+                        </div>
+                    <?php }elseif(isset($_SESSION['error_format'])){?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo $_SESSION['error_format']; unset($_SESSION['error_format']);?>
+                        </div>
+                    <?php }?>
+                </form>
             </div>
         </div>
     </div>

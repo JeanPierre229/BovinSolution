@@ -22,8 +22,8 @@
         // Préparation de la requête pour éviter les injections SQL
         // Utilisation de la table mesDemandesA ici
         $requete = $connect->prepare("
-            INSERT INTO mesDemandesA_$nom(region, type_betails, type_age, budget, assistance, recommandation)
-            VALUES(:region, :type_betails, :type_age, :budget, :assistance, :recommendation)
+            INSERT INTO mesdemandesa_$nom(region, type_betails, type_age, budget, assistance, recommandation)
+            VALUES(:region, :type_betails, :type_age, :budget, :assistance, :recommandation)
         ");
         
         // Exécution de la requête avec des paramètres sécurisés
@@ -33,7 +33,7 @@
             ':type_age' => $type_age,
             ':budget' => $budget,
             ':assistance' => $assistance,
-            ':recommendation' => $recommandation
+            ':recommandation' => $recommandation
         ]);
 
         header("Location: info-animalier.php#form-demand");

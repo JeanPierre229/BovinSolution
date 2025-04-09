@@ -60,12 +60,12 @@
               <div class="card-header pb-0">
                 <div class="row">
                   <div class="col-lg-6 col-7">
-                    <h6>Performances de nos animliers peulhs</h6>
+                    <h6>Performances de vos animliers peulhs</h6>
                     <p class="text-sm mb-0">
                       <i class="fa fa-check text-info" aria-hidden="true"></i>
                       <span class="font-weight-bold ms-1">06 groupes peulhs de</span> Borgou
                       <span><i><a href="../../solution-bovinsolution/info-animalier.php">Demander un Animalier</a></i></span>
-                      <span><i><a href="bs_demande_animalier.php" class='text-dark'>Mes demandes d'Animaliers</a></i></span>
+                      <span><i><a href="#animalier_demande" class='text-dark'>Mes demandes d'Animaliers</a></i></span>
                     </p>
                   </div>
                   <div class="col-lg-6 col-5 my-auto text-end">
@@ -75,8 +75,6 @@
                       </a>
                       <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
                         <li><a class="dropdown-item border-radius-md" href="javascript:;">Voir tout</a></li>
-                        <!-- <li><a class="dropdown-item border-radius-md" href="javascript:;">Autre actions</a></li>
-                        <li><a class="dropdown-item border-radius-md" href="javascript:;">Autre chose ici</a></li> -->
                       </ul>
                     </div>
                   </div>
@@ -90,8 +88,8 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">N°</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Noms</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Taille du cheptel</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mise Bas</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Prophylaxie</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mise Bas</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Prophylaxie</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fautes réalisées</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SAnctions reçues</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Salaires payées</th>
@@ -100,25 +98,35 @@
                       </tr>
                     </thead>
                     <tbody>
+                      <?php
+                        $nom = $_SESSION['nom'];
+                        require "../../connectDB.php";
+                        $tablename_new = "performance_animalier_".$nom;
+                        $connect = DataBase::connect();
+                        $requete = $connect->prepare("SELECT * FROM $tablename_new;");
+                        $requete->execute();
+
+                        while($line = $requete->fetch()){
+                      ?>
                       <tr>
                         <td>
                           <div class="d-flex px-2 py-1">
-                            <span>#1</span>
+                            <span>#<?= $line['id'] ?></span>
                           </div>
                         </td>
-                        <td>
+                        <td class="">
                             <div class="avatar-group mt-2">
-                                <h6 class="text-xxs">MANOUTON</h6>
+                                <h6 class="text-xxs"><?= $line['nom'] ?></h6>
                             </div>
                         </td>
                         <td class="align-middle text-sm">
-                          <span class="text-xs font-weight-bold"> 34000</span>
+                          <span class="text-xs font-weight-bold"> <?= $line['taille'] ?></span>
                         </td>
                         <td class="align-middle">
                           <div class="progress-wrapper w-25 mx-auto">
                             <div class="progress-info">
                               <div class="progress-percentage">
-                                <span class="text-xs font-weight-bold">60</span>
+                                <span class="text-xs font-weight-bold"><?= $line['mise_bas'] ?></span>
                               </div>
                             </div>
                           </div>
@@ -127,7 +135,7 @@
                             <div class="progress-wrapper w-25 mx-auto">
                                 <div class="progress-info">
                                     <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
+                                        <span class="text-xs font-weight-bold"> <?= $line['prophilaxie'] ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +144,7 @@
                             <div class="progress-wrapper w-25 mx-auto">
                                 <div class="progress-info">
                                     <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
+                                        <span class="text-xs font-weight-bold"> <?= $line['fautes'] ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -145,7 +153,7 @@
                             <div class="progress-wrapper w-25 mx-auto">
                                 <div class="progress-info">
                                     <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
+                                        <span class="text-xs font-weight-bold"> <?= $line['sanctions'] ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -154,7 +162,7 @@
                             <div class="progress-wrapper w-25 mx-auto">
                                 <div class="progress-info">
                                     <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
+                                        <span class="text-xs font-weight-bold"> <?= $line['salaires'] ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -163,7 +171,7 @@
                             <div class="progress-wrapper w-25 mx-auto">
                                 <div class="progress-info">
                                     <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
+                                        <span class="text-xs font-weight-bold"> <?= $line['avances'] ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -172,246 +180,13 @@
                             <div class="progress-wrapper w-25 mx-auto">
                                 <div class="progress-info">
                                     <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
+                                        <span class="text-xs font-weight-bold"> <?= $line['dettes'] ?></span>
                                     </div>
                                 </div>
                             </div>
                         </td>
                       </tr>
-                      <tr>
-                        <td>
-                          <div class="d-flex px-2 py-1">
-                            <span>#2</span>
-                          </div>
-                        </td>
-                        <td>
-                            <div class="avatar-group mt-2">
-                                <h6 class="text-xxs">MANOUTON</h6>
-                            </div>
-                        </td>
-                        <td class="align-middle text-sm">
-                          <span class="text-xs font-weight-bold"> 500</span>
-                        </td>
-                        <td class="align-middle">
-                          <div class="progress-wrapper w-25 mx-auto">
-                            <div class="progress-info">
-                              <div class="progress-percentage">
-                                <span class="text-xs font-weight-bold">60</span>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="d-flex px-2 py-1">
-                            <span>#3</span>
-                          </div>
-                        </td>
-                        <td>
-                            <div class="avatar-group mt-2">
-                                <h6 class="text-xxs">MANOUTON</h6>
-                            </div>
-                        </td>
-                        <td class="align-middle text-sm">
-                          <span class="text-xs font-weight-bold"> 8000</span>
-                        </td>
-                        <td class="align-middle">
-                          <div class="progress-wrapper w-25 mx-auto">
-                            <div class="progress-info">
-                              <div class="progress-percentage">
-                                <span class="text-xs font-weight-bold">60</span>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="d-flex px-2 py-1">
-                            <span>#4</span>
-                          </div>
-                        </td>
-                        <td>
-                            <div class="avatar-group mt-2">
-                                <h6 class="text-xxs">MANOUTON</h6>
-                            </div>
-                        </td>
-                        <td class="align-middle text-sm">
-                          <span class="text-xs font-weight-bold"> 3000</span>
-                        </td>
-                        <td class="align-middle">
-                          <div class="progress-wrapper w-25 mx-auto">
-                            <div class="progress-info">
-                              <div class="progress-percentage">
-                                <span class="text-xs font-weight-bold">60</span>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                      </tr>
+                      <?php } ?>
                     </tbody>
                   </table>
                 </div>
@@ -558,7 +333,7 @@
             <div class="card">
               <div class="card-header pb-0">
                 <div class="row">
-                  <div class="col-lg-6 col-7">
+                  <div class="col-lg-6 col-7" id="animalier_demande">
                     <h6>Mes animaliers demandé</h6>
                     <p class="text-sm mb-0">
                       <i class="fa fa-check text-info" aria-hidden="true"></i>
@@ -594,13 +369,11 @@
                     <tbody>
                       <?php
                         $nom = $_SESSION['nom'];
-                        require "../../connectDB.php";
-                        $connect = DataBase::connect();
                         $tablename= 'mesdemandesa_' . $nom;
-                        $requete = $connect->prepare("SELECT * FROM `$tablename`;");
-                        $requete->execute();
+                        $requete1 = $connect->prepare("SELECT * FROM `$tablename`;");
+                        $requete1->execute();
 
-                        while($line = $requete->fetch()){
+                        while($line = $requete1->fetch()){
                       ?>
                         <tr>
                           <td>
@@ -672,7 +445,7 @@
                       <i class="fa fa-check text-info" aria-hidden="true"></i>
                       <span class="font-weight-bold ms-1">06 groupes peulhs de</span> Borgou
                       <span><i><a href="../../solution-bovinsolution/info-animalier.php">Demander un Animalier</a></i></span>
-                      <span><i><a href="bs_demande_animalier.php" class='text-dark'>Mes demandes d'Animaliers</a></i></span>
+                      <span><i><a href="#animalier_demande" class='text-dark'>Mes demandes d'Animaliers</a></i></span>
                     </p>
                   </div>
                   <div class="col-lg-6 col-5 my-auto text-end">
@@ -707,25 +480,32 @@
                       </tr>
                     </thead>
                     <tbody>
+                      <?php
+                        $nom = $_SESSION['nom'];
+                        $tablename_new = "performance_animalier_".$nom;
+                        $requete3 = $connect->prepare("SELECT * FROM $tablename_new;");
+                        $requete3->execute();
+                        while($line1 = $requete3->fetch()){
+                      ?>
                       <tr>
                         <td>
                           <div class="d-flex px-2 py-1">
-                            <span>#1</span>
+                            <span>#<?= $line1['id'] ?></span>
                           </div>
                         </td>
                         <td>
                             <div class="avatar-group mt-2">
-                                <h6 class="text-xxs">MANOUTON</h6>
+                                <h6 class="text-xxs"> <?= $line1['nom'] ?></h6>
                             </div>
                         </td>
                         <td class="align-middle text-sm">
-                          <span class="text-xs font-weight-bold"> 34000</span>
+                          <span class="text-xs font-weight-bold"> <?= $line1['taille'] ?></span>
                         </td>
                         <td class="align-middle">
                           <div class="progress-wrapper w-25 mx-auto">
                             <div class="progress-info">
                               <div class="progress-percentage">
-                                <span class="text-xs font-weight-bold">60</span>
+                                <span class="text-xs font-weight-bold"><?= $line1['mise_bas'] ?></span>
                               </div>
                             </div>
                           </div>
@@ -734,7 +514,7 @@
                             <div class="progress-wrapper w-25 mx-auto">
                                 <div class="progress-info">
                                     <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
+                                        <span class="text-xs font-weight-bold"><?= $line1['prophilaxie'] ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -743,7 +523,7 @@
                             <div class="progress-wrapper w-25 mx-auto">
                                 <div class="progress-info">
                                     <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
+                                        <span class="text-xs font-weight-bold"><?= $line1['fautes'] ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -752,7 +532,7 @@
                             <div class="progress-wrapper w-25 mx-auto">
                                 <div class="progress-info">
                                     <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
+                                        <span class="text-xs font-weight-bold"> <?= $line1['sanctions'] ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -761,7 +541,7 @@
                             <div class="progress-wrapper w-25 mx-auto">
                                 <div class="progress-info">
                                     <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
+                                        <span class="text-xs font-weight-bold"> <?= $line1['salaires'] ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -770,7 +550,7 @@
                             <div class="progress-wrapper w-25 mx-auto">
                                 <div class="progress-info">
                                     <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
+                                        <span class="text-xs font-weight-bold"> <?= $line1['avances'] ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -779,246 +559,13 @@
                             <div class="progress-wrapper w-25 mx-auto">
                                 <div class="progress-info">
                                     <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
+                                        <span class="text-xs font-weight-bold"> <?= $line1['dettes'] ?></span>
                                     </div>
                                 </div>
                             </div>
                         </td>
                       </tr>
-                      <tr>
-                        <td>
-                          <div class="d-flex px-2 py-1">
-                            <span>#2</span>
-                          </div>
-                        </td>
-                        <td>
-                            <div class="avatar-group mt-2">
-                                <h6 class="text-xxs">MANOUTON</h6>
-                            </div>
-                        </td>
-                        <td class="align-middle text-sm">
-                          <span class="text-xs font-weight-bold"> 500</span>
-                        </td>
-                        <td class="align-middle">
-                          <div class="progress-wrapper w-25 mx-auto">
-                            <div class="progress-info">
-                              <div class="progress-percentage">
-                                <span class="text-xs font-weight-bold">60</span>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="d-flex px-2 py-1">
-                            <span>#3</span>
-                          </div>
-                        </td>
-                        <td>
-                            <div class="avatar-group mt-2">
-                                <h6 class="text-xxs">MANOUTON</h6>
-                            </div>
-                        </td>
-                        <td class="align-middle text-sm">
-                          <span class="text-xs font-weight-bold"> 8000</span>
-                        </td>
-                        <td class="align-middle">
-                          <div class="progress-wrapper w-25 mx-auto">
-                            <div class="progress-info">
-                              <div class="progress-percentage">
-                                <span class="text-xs font-weight-bold">60</span>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="d-flex px-2 py-1">
-                            <span>#4</span>
-                          </div>
-                        </td>
-                        <td>
-                            <div class="avatar-group mt-2">
-                                <h6 class="text-xxs">MANOUTON</h6>
-                            </div>
-                        </td>
-                        <td class="align-middle text-sm">
-                          <span class="text-xs font-weight-bold"> 3000</span>
-                        </td>
-                        <td class="align-middle">
-                          <div class="progress-wrapper w-25 mx-auto">
-                            <div class="progress-info">
-                              <div class="progress-percentage">
-                                <span class="text-xs font-weight-bold">60</span>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <div class="progress-wrapper w-25 mx-auto">
-                                <div class="progress-info">
-                                    <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                      </tr>
+                      <?php } ?>
                     </tbody>
                   </table>
                 </div>
